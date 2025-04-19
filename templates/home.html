@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diabetes Prediction System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#4a89dc",
+                        secondary: "#3ba0ff",
+                        accent: "#e74c3c",
+                        light: "#f5f7fa",
+                        dark: "#2c3e50",
+                        success: "#2ecc71",
+                    },
+                    animation: {
+                        float: "float 3s ease-in-out infinite",
+                    },
+                    keyframes: {
+                        float: {
+                            "0%, 100%": {
+                                transform: "translateY(0)"
+                            },
+                            "50%": {
+                                transform: "translateY(-20px)"
+                            },
+                        },
+                    },
+                },
+            },
+        };
+    </script>
+    <style type="text/css">
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+
+<body class="bg-light text-dark font-sans">
+    <!-- Navigation -->
+    <nav
+        class="fixed top-0 w-full bg-white shadow-md z-50 flex flex-col md:flex-row justify-between items-center p-4 md:px-12">
+        <div class="text-2xl font-bold text-primary mb-4 md:mb-0">
+            Diabetes<span class="text-accent">Predict</span>
+        </div>
+        <ul class="flex space-x-2 md:space-x-6">
+            <li>
+                <a href="#home"
+                    class="text-dark font-medium hover:text-primary hover:bg-blue-50 px-3 py-2 rounded transition">Home</a>
+            </li>
+            <li>
+                <a href="#features"
+                    class="text-dark font-medium hover:text-primary hover:bg-blue-50 px-3 py-2 rounded transition">Features</a>
+            </li>
+            <li>
+                <a href="#about"
+                    class="text-dark font-medium hover:text-primary hover:bg-blue-50 px-3 py-2 rounded transition">About
+                    Us</a>
+            </li>
+            <li>
+                <a href="#contact"
+                    class="text-dark font-medium hover:text-primary hover:bg-blue-50 px-3 py-2 rounded transition">Contact</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-12 pt-20">
+        <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                Smart Diabetes <span class="text-primary">Prediction</span> System
+            </h1>
+            <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                Our advanced machine learning model helps predict the likelihood of
+                diabetes with over 92% accuracy. Early detection can lead to better
+                management and improved quality of life. Take control of your health
+                today with our easy-to-use assessment tool.
+            </p>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="/start" target="_blank" rel="noopener noreferrer" 
+                    class="bg-primary hover:bg-secondary text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center">
+                    Take the Test Now
+                </a>
+                <a href="#features"
+                    class="border-2 border-primary text-primary hover:bg-blue-50 font-semibold px-8 py-3 rounded-full shadow-md transition-all duration-300 text-center">
+                    Learn More
+                </a>
+            </div>
+            <div class="mt-10 flex items-center space-x-4">
+                <div class="flex -space-x-2">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg"
+                        class="w-10 h-10 rounded-full border-2 border-white" alt="User" />
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                        class="w-10 h-10 rounded-full border-2 border-white" alt="User" />
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg"
+                        class="w-10 h-10 rounded-full border-2 border-white" alt="User" />
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">
+                        Trusted by <span class="font-bold">5000+</span> users
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="text-gray-600 ml-2">4.8 (1.2k reviews)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="md:w-1/2 flex justify-center">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Diabetes Prediction Illustration"
+                class="w-full max-w-lg animate-float" />
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                Our <span class="text-primary">Features</span>
+            </h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                Discover what makes our diabetes prediction system stand out from the
+                rest
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Instant Results</h3>
+                    <p class="text-gray-600">
+                        Get your diabetes risk assessment in under 30 seconds with our
+                        optimized machine learning algorithm.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">92% Accuracy</h3>
+                    <p class="text-gray-600">
+                        Our model achieves industry-leading accuracy through continuous
+                        learning from real-world data.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Data Security</h3>
+                    <p class="text-gray-600">
+                        Your health data is encrypted with AES-256 and never shared
+                        without your consent.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Mobile Friendly</h3>
+                    <p class="text-gray-600">
+                        Access your risk assessment anytime, anywhere with our fully
+                        responsive design.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Detailed Report</h3>
+                    <p class="text-gray-600">
+                        Receive a comprehensive PDF report with your results and
+                        personalized recommendations.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-light p-8 rounded-xl shadow-md hover:shadow-xl transition-all duration-300">
+                    <div class="text-primary text-4xl mb-4">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Expert Support</h3>
+                    <p class="text-gray-600">
+                        24/7 access to diabetes specialists for questions about your
+                        results.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="/start" target="_blank" rel="noopener noreferrer"
+                    class="inline-block bg-primary hover:bg-secondary text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    Start Your Assessment Now
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 md:px-12 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                About <span class="text-primary">Our Team</span>
+            </h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                Meet the dedicated professionals behind our innovative diabetes
+                prediction system
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="team-member bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+                    <img src="{{ url_for('static', filename='images/Coder PP.png') }}" alt="NO Image"
+                        class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary" />
+                    <h3 class="text-xl font-bold text-center mb-2">
+                        Naved Sutar
+                    </h3>
+                    <p class="text-primary text-center mb-4">Web Developer</p>
+                    <p class="text-gray-600 text-center">
+                        Board-certified endocrinologist with 15 years of experience in
+                        diabetes care and prevention.
+                    </p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="team-member bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+                   <img src="{{ url_for('static', filename='images/mem2.avif') }}" alt="NO Image"
+                        class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary" />
+                    <h3 class="text-xl font-bold text-center mb-2">Adeen Momin</h3>
+                    <p class="text-primary text-center mb-4">Web Developer</p>
+                    <p class="text-gray-600 text-center">
+                        Machine learning expert specializing in healthcare applications
+                        and predictive modeling.
+                    </p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="team-member bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+                    <img src="{{ url_for('static', filename='images/mem3.jpg') }}" alt="NO Image"
+                        class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary" />
+                    <h3 class="text-xl font-bold text-center mb-2">Saad Ansari</h3>
+                    <p class="text-primary text-center mb-4">Web Developer</p>
+                    <p class="text-gray-600 text-center">
+                        Registered dietitian focused on diabetes prevention through
+                        lifestyle modifications.
+                    </p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fas fa-globe"></i></a>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="team-member bg-white p-6 rounded-xl shadow-md transition-all duration-300">
+                    <img src="{{ url_for('static', filename='images/mem4.webp') }}" alt="NO Image"
+                        class="w-32 h-32 rounded-full mx-auto mb-4 border-4 border-primary" />
+                    <h3 class="text-xl font-bold text-center mb-2">Hujaifa Shaikh</h3>
+                    <p class="text-primary text-center mb-4">Web Developer</p>
+                    <p class="text-gray-600 text-center">
+                        Full-stack developer responsible for implementing our prediction
+                        algorithms.
+                    </p>
+                    <div class="flex justify-center space-x-3 mt-4">
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-500 hover:text-primary"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white p-8 rounded-xl shadow-md">
+                <h3 class="text-2xl font-bold mb-6 text-center">Our Mission</h3>
+                <p class="text-gray-600 mb-6">
+                    Diabetes affects over 463 million people worldwide, and nearly half
+                    of cases go undiagnosed. Our team came together to create this
+                    prediction system as part of our academic research to demonstrate
+                    the potential of AI in early disease detection.
+                </p>
+                <p class="text-gray-600">
+                    We believe that accessible, accurate risk assessment tools can
+                    empower individuals to take proactive steps toward better health.
+                    This project combines medical expertise with cutting-edge technology
+                    to provide a service that's both scientifically rigorous and easy to
+                    use.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+                Contact <span class="text-primary">Us</span>
+            </h2>
+            <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">
+                Have questions or feedback? We'd love to hear from you!
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-6">Get in Touch</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-primary text-xl mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Address</h4>
+                                <p class="text-gray-600">
+                                    M.H. Saboo Siddik College Of Engineering
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-primary text-xl mt-1">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Phone</h4>
+                                <p class="text-gray-600">+91 123456789</p>
+                                <p class="text-gray-600 text-sm">Mon-Fri, 9am-5pm EST</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="text-primary text-xl mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <p class="text-gray-600">support@diabetespredict.com</p>
+                                <p class="text-gray-600 text-sm">
+                                    Typically respond within 24 hours
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h4 class="font-bold mb-4">Follow Us</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-500 hover:text-primary text-xl"><i
+                                    class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary text-xl"><i
+                                    class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary text-xl"><i
+                                    class="fab fa-linkedin"></i></a>
+                            <a href="#" class="text-gray-500 hover:text-primary text-xl"><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md">
+                    <form>
+                        <div class="mb-6">
+                            <label for="name" class="block font-medium mb-2">Your Name</label>
+                            <input type="text" id="name"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="email" class="block font-medium mb-2">Email Address</label>
+                            <input type="email" id="email"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="subject" class="block font-medium mb-2">Subject</label>
+                            <input type="text" id="subject"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" />
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="message" class="block font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-primary hover:bg-secondary text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">DiabetesPredict</h3>
+                    <p class="text-gray-400">
+                        Empowering individuals with AI-driven diabetes risk assessment for
+                        better health outcomes.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#home" class="text-gray-400 hover:text-white transition">Home</a>
+                        </li>
+                        <li>
+                            <a href="#features" class="text-gray-400 hover:text-white transition">Features</a>
+                        </li>
+                        <li>
+                            <a href="#about" class="text-gray-400 hover:text-white transition">About Us</a>
+                        </li>
+                        <li>
+                            <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+                        </li>
+                        <li>
+                            <a href="prediction.html" class="text-gray-400 hover:text-white transition">Take the
+                                Test</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition">Diabetes Prevention</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition">Healthy Recipes</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition">Exercise Guides</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition">Research Papers</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition">Cookie Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-400 hover:text-white transition">Disclaimer</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                    &copy; 2023 DiabetesPredict. All rights reserved.
+                </p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+            anchor.addEventListener("click", function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute("href")).scrollIntoView({
+                    behavior: "smooth",
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
